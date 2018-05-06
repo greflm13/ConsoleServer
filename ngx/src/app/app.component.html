@@ -1,0 +1,8 @@
+<div class="container-fluid" style="width: 100%">
+    <p *ngFor="let line of console">{{line}}</p>
+
+    <span class="fixed-bottom text-nowrap" style="width: 100%;">
+        {{path}}:
+        <input [(ngModel)]="command" type="text" name="command" id="command" #com="ngModel" autofocus style="width: 90%">
+    </span>
+</div>
