@@ -39,6 +39,7 @@ process.env['DEBUG'] = '*::INFO, *::WARN, *::ERR, *::SEVERE, *::';
 process.env['DEBUG_COLORS'] = 'true';
 process.env['DEBUG_STREAM'] = 'stdout';
 var debugsx = require("debug-sx");
+var path = require("path");
 var server_1 = require("./server");
 var date = new Date();
 exports.log = debugsx.createFullLogger('main');
@@ -50,7 +51,7 @@ var consolelogger = debugsx.createConsoleHandler('stdout', '*::INFO, *::FINE, *:
     { level: 'WARN', color: 'magenta', inverse: true }
 ]);
 var filelogger;
-filelogger = debugsx.createFileHandler('log/' + 'server_' + date.toLocaleDateString() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds() + '.log', '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN', '-*', [
+filelogger = debugsx.createFileHandler(path.join(__dirname, '..', 'log', 'server_' + date.toLocaleDateString() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds() + '.log'), '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN', '-*', [
     { level: 'INFO', color: 'cyan', inverse: true },
     { level: 'FINE', color: 'white', inverse: true },
     { level: 'SEVERE', color: 'red', inverse: true },

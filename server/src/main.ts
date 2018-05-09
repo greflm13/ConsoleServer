@@ -3,6 +3,7 @@ process.env['DEBUG_COLORS'] = 'true';
 process.env['DEBUG_STREAM'] = 'stdout';
 
 import * as debugsx from 'debug-sx';
+import * as path from 'path';
 import { Server } from './server';
 
 const date = new Date();
@@ -17,7 +18,12 @@ const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '
 let filelogger: debugsx.IHandler;
 
 filelogger = debugsx.createFileHandler(
-  'log/' + 'server_' + date.toLocaleDateString() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds() + '.log',
+  path.join(
+    __dirname,
+    '..',
+    'log',
+    'server_' + date.toLocaleDateString() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds() + '.log'
+  ),
   '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
   '-*',
   [

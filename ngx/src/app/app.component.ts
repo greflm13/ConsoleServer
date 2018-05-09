@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   async keyup(event: KeyboardEvent) {
     if (event.key === 'Enter' && (this.command !== '' || this.command === undefined || this.command === null)) {
       this.history.push(this.command);
-      this.http.post('command', this.command).then(res => {
+      this.http.post('command', 'cd ' + this.path + '&&' + this.command).then(res => {
         // console.log(res);
         this.console.push(res);
       });
